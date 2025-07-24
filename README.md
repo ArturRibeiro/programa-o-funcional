@@ -2,7 +2,7 @@
 
 | Conceito                         | Descrição Técnica                                                                 | Propósito Prático                                                                                  |
 |----------------------------------|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| **Função Pura**                  | Função que não depende de ou modifica estado externo.                             | Facilita testes unitários e concorrência segura.                                                    |
+| **[Função Pura](http://x "Função Pura")**                  | Função que não depende de ou modifica estado externo.                             | Facilita testes unitários e concorrência segura.                                                    |
 | **Imutabilidade**                | Dados não são modificados após sua criação.                                       | Evita efeitos colaterais e simplifica o raciocínio sobre o estado do sistema.                      |
 | **Funções de Ordem Superior**    | Funções que recebem ou retornam outras funções (`Func`, `Action`, `Predicate`).   | Permite reutilização e composição de lógica.                                                        |
 | **Currying**                     | Transformação de uma função de múltiplos argumentos em uma cadeia de funções unárias. | Torna funções mais reutilizáveis e compatíveis com `Partial Application`.                         |
