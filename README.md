@@ -1,3 +1,84 @@
+
+# 📖 Introdução à Programação Funcional
+
+## 🧬 Origem e História
+
+A **programação funcional (FP)** tem suas raízes na matemática, mais precisamente no **cálculo lambda**, formalizado em **1930** por **Alonzo Church**, professor de matemática da Universidade de Princeton.  
+O cálculo lambda é um sistema formal que descreve computações puramente como aplicação de funções.
+
+### 🗓️ Linha do tempo:
+
+| Ano  | Marco                                                                 |
+|------|------------------------------------------------------------------------|
+| 1930 | Alonzo Church cria o **λ-calculus**                                   |
+| 1958 | Surge **LISP** — primeira linguagem funcional prática (John McCarthy) |
+| 1970s | Desenvolvimento de linguagens como ML e Scheme                       |
+| 1990s | Criação do **Haskell**, linguagem funcional pura moderna             |
+| 2000s+ | Popularização de conceitos funcionais em linguagens imperativas      |
+
+---
+
+## 🎯 Propósito da Programação Funcional
+
+O objetivo da programação funcional é **modelar computações como avaliação de funções matemáticas puras**, evitando efeitos colaterais e estados mutáveis.
+
+### Benefícios:
+
+- ✅ Imutabilidade como princípio central;
+- ✅ Funções puras, previsíveis e testáveis;
+- ✅ Estímulo à composição de funções e reutilização;
+- ✅ Facilita paralelismo e concorrência;
+- ✅ Reduz bugs relacionados a estado e mutabilidade.
+
+---
+
+## 🧠 Características Fundamentais
+
+| Conceito               | Descrição                                                                 |
+|------------------------|---------------------------------------------------------------------------|
+| Funções puras          | Resultado depende apenas dos argumentos de entrada                        |
+| Imutabilidade          | Dados não podem ser alterados após criação                                |
+| Funções de ordem superior | Funções que recebem ou retornam outras funções                     |
+| Recursão               | Preferida no lugar de loops imperativos                                   |
+| Avaliação preguiçosa   | Cálculo adiado até que o valor seja necessário                            |
+| Composição             | Encadeamento de funções para formar pipelines de transformação de dados   |
+
+---
+
+## 💬 Linguagens que adotam Programação Funcional
+
+### Funcionais puras:
+
+- Haskell
+- Elm
+- F#
+
+### Multi-paradigma (com suporte funcional):
+
+- C#
+- Scala
+- JavaScript
+- Kotlin
+- Python
+- Rust
+
+---
+
+## 🔄 Paradigma Declarativo
+
+A programação funcional é um subtipo do paradigma **declarativo**, ou seja, descreve *o que* deve ser feito, em contraste com o paradigma imperativo que descreve *como* fazer.
+
+---
+
+## 📚 Leitura Recomendada
+
+- [Cálculo Lambda - Wikipedia](https://pt.wikipedia.org/wiki/C%C3%A1lculo_lambda)
+- Livro: *Structure and Interpretation of Computer Programs (SICP)*
+- Livro: *Functional Programming in C#* (Enrico Buonanno)
+
+---
+
+
 ## 📊 Tabela: Conceitos de Programação Funcional em C#
 
 | Conceito                         | Descrição Técnica                                                                 | Propósito Prático                                                                                  |
