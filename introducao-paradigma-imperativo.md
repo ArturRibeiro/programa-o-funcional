@@ -75,14 +75,14 @@ O objetivo principal é:
 
 ## 📊 Tabela: Conceitos de Paradigma Imperativo em C#
 
-| Conceito                      | Exemplo em C#                                                        | Explicação                                         |
-|------------------------------|----------------------------------------------------------------------|---------------------------------------------------|
-| **Declaração de variável**   | `int x = 10;`                                                       | Criação e atribuição inicial                      |
-| **Mutação de estado**        | `x = x + 1;`                                                        | Estado da variável é alterado                     |
-| **Condicional**              | `if (x > 5) { ... }`                                                | Executa blocos com base em condições              |
-| **Laço de repetição**        | `for (int i = 0; i < 10; i++)`                                     | Repetição de comandos                             |
-| **Procedimento (método)**    | `void MostrarMensagem() { Console.WriteLine("Olá"); }`             | Sub-rotina que executa comandos                   |
-| **Efeito colateral**         | Método que altera uma variável global ou escreve no console         | Afeta elementos fora de seu escopo                |
-| **Ordem importa**            | `Console.WriteLine(x); x++;` ≠ `x++; Console.WriteLine(x);`        | Ordem afeta o resultado                           |
-| **Break/Continue**           | `for (...) { if (cond) break; }`                                   | Manipula controle de loops                        |
-| **Operações sequenciais**    | `A(); B(); C();`                                                   | Cada comando é executado em sequência             |
+| Conceito                                                             | Exemplo em C#                                                        | Explicação                                         |
+|----------------------------------------------------------------------|----------------------------------------------------------------------|---------------------------------------------------|
+| [**Declaração de variável**](pi-conceitos/declaracao-de-variavel.md) | `int x = 10;`                                                       | Criação e atribuição inicial                      |
+| [**Mutação de estado**](pi-conceitos/mutacao-de-estado.md)           | `x = x + 1;`                                                        | Estado da variável é alterado                     |
+| [**Condicional**](pi-conceitos/condicional.md)                       | `if (x > 5) { ... }`                                                | Executa blocos com base em condições              |
+| [**Laço de repetição**](pi-conceitos/laco-de-repeticao.md)           | `for (int i = 0; i < 10; i++)`                                     | Repetição de comandos                             |
+| [**Procedimento (método)**](pi-conceitos/procedimento-metodo.md)     | `void MostrarMensagem() { Console.WriteLine("Olá"); }`             | Sub-rotina que executa comandos                   |
+| [**Efeito colateral**](pi-conceitos/efeito-colateral.md)             | Método que altera uma variável global ou escreve no console         | Afeta elementos fora de seu escopo                |
+| [**Ordem importa**](pi-conceitos/ordem-importa.md)                   | `Console.WriteLine(x); x++;` ≠ `x++; Console.WriteLine(x);`        | Ordem afeta o resultado                           |
+| [**Break/Continue**](pi-conceitos/break-continue.md)                 | `for (...) { if (cond) break; }`                                   | Manipula controle de loops                        |
+| [**Operações sequenciais**](pi-conceitos/Operacoes-sequenciais.md)   | `A(); B(); C();`                                                   | Cada comando é executado em sequência             |
