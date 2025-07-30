@@ -61,6 +61,15 @@ public class Right<L, R> : Either<L, R>
         => new Right<L, R2>(func(_value));
 }
 ```
+---
+
+## 📊 Métodos e seus Propósitos
+
+| Método       | Propósito                                                                 |
+|--------------|---------------------------------------------------------------------------|
+| `Match`      | Avalia `Left` ou `Right` e retorna um valor em ambos os casos             |
+| `Map`        | Aplica uma função apenas se for `Right`, preservando `Left`               |
+| `Bind`       | Aplica uma função que também retorna um `Either` (evita `nested Either`)  |
 
 ---
 
