@@ -112,6 +112,173 @@ ValidarEmail("teste@exemplo.com")
 
 ---
 
+
+# 📦 Comparativo: Venda Online com Programação Funcional vs Imperativa
+
+Este material demonstra a diferença entre os estilos de programação **funcional** e **imperativo** no contexto de uma aplicação de venda online com:
+
+- Busca de produto
+- Verificação de estoque
+- Validação da forma de pagamento
+- Geração de pedido
+
+---
+
+## ✅ Estilo Funcional (`ApplicationProgramacaoFuncional.cs`)
+
+**Características:**
+
+- Utiliza `Either<string, T>` para representar erros ou sucesso
+- Encadeamento de operações com `Bind`
+- Sem uso de exceções
+- Alta testabilidade
+- Separação clara de responsabilidades com funções puras
+
+### Fluxo:
+
+```csharp
+BuscarProduto
+  → VerificarEstoque
+    → ValidarPagamento
+      → GerarPedido
+```
+
+### Exemplo:
+
+```csharp
+return BuscarProduto(produtoId)
+    .Bind(produto => VerificarEstoque(produto, quantidade)
+        .Bind(_ => ValidarPagamento(pagamentoTexto)
+            .Bind(fp => GerarPedido(produto, quantidade, fp))));
+```
+
+---
+
+## 🛠 Estilo Imperativo (`ApplicationProgramacaoImperativa.cs`)
+
+**Características:**
+
+- Usa `try/catch` para tratamento de erro
+- Estrutura sequencial clássica
+- Lançamento de exceções para controle de fluxo
+- Mais próximo de código típico em aplicações comerciais
+
+### Fluxo:
+
+```csharp
+Produto → if null → throw
+Estoque → if < quantidade → throw
+Pagamento → if invalid → throw
+→ Calcula total e retorna Pedido
+```
+
+### Exemplo:
+
+```csharp
+if (!Enum.TryParse<FormaPagamento>(pagamentoTexto, out var formaPagamento))
+    throw new Exception("Forma de pagamento inválida.");
+```
+
+---
+
+## 📊 Tabela Comparativa
+
+| Aspecto              | Funcional (`Either`)                     | Imperativo (`try/catch`)               |
+|----------------------|------------------------------------------|----------------------------------------|
+| Tratamento de Erro   | `Either.Left` e `Right` (explícito)     | Exceções (`throw`)                     |
+| Fluxo de Controle    | Encadeado (`Bind`, `Map`)               | Linear com `if` e `throw`              |
+| Clareza              | Mais declarativo                       | Mais direto, mas com duplicações       |
+| Testabilidade        | Alta (sem exceções)                    | Boa, exige mocks e validações extras   |
+| Composição           | Natural com funções                    | Verbosa com `if`/`else`                |
+| Tipagem de Erro      | Estruturado por tipos                  | Apenas `string` ou exceção             |
+
+---
+
+## 🧾 Arquivos de Referência
+
+#### 🧱 Programação Funcional
+
+```csharp
+public static Either<string, PedidoPF> ProcessarVenda(string produtoId
+    , int quantidade
+    , string formaPagamentoTexto)
+{
+    var pedidoRepository = new PedidoRepositoryPF();
+
+    return pedidoRepository.Obter(produtoId)
+        .Bind(produto => VerificarEstoque(produto, quantidade)
+            .Bind(_ => ValidarPagamento(formaPagamentoTexto)
+                .Bind(formaValida => GerarPedido(produto, quantidade, formaValida))
+            )
+        );
+}
+
+private static readonly Func<ProdutoPF, int, Either<string, ProdutoPF>> VerificarEstoque =
+    (produto, quantidade)
+        => produto.Estoque >= quantidade
+            ? new Right<string, ProdutoPF>(produto)
+            : new Left<string, ProdutoPF>("Estoque insuficiente.");
+
+private static Either<string, FormaPagamentoPF> ValidarPagamento
+    (string input)
+    => Enum.TryParse<FormaPagamentoPF>(input, ignoreCase: true, out var formaValida)
+        ? new Right<string, FormaPagamentoPF>(formaValida)
+        : new Left<string, FormaPagamentoPF>("Forma de pagamento inválida.");
+
+private static readonly Func<ProdutoPF, int, FormaPagamentoPF, Either<string, PedidoPF>> GerarPedido =
+    (produto, quantidade, pagamento) 
+        => new Right<string, PedidoPF>(new PedidoPF(produto.Id, quantidade, produto.Preco * quantidade, pagamento));
+```
+
+#### 🧱 Programação Imperativa
+
+```csharp
+    public static string ProcessarVenda(string produtoId, int quantidade, string formaPagamentoTexto)
+    {
+        try
+        {
+            // Buscar produto
+            var pedidoRepository = new PedidoRepositoryPI();
+            var produto = pedidoRepository.Obter(produtoId);
+            if (produto == null) throw new Exception("Produto não encontrado.");
+
+            // Verificar estoque
+            if (produto.Estoque < quantidade) throw new Exception("Estoque insuficiente.");
+            
+            // Validar forma de pagamento
+            if (!Enum.TryParse<FormaPagamentoPI>(formaPagamentoTexto, ignoreCase: true, out var formaPagamento))
+                throw new Exception("Forma de pagamento inválida.");
+            
+            // Calcular pedido
+            var pedido = new PedidoPI
+            {
+                ProdutoId = produto.Id,
+                Quantidade = quantidade,
+                Total = produto.Preco * quantidade,
+                PagamentoPi = formaPagamento
+            };
+            return $"✅ Pedido: {pedido.ProdutoId}, Quant: {pedido.Quantidade}, Total: R${pedido.Total}, Pagamento: {pedido.PagamentoPi}";
+        }
+        catch (Exception ex)
+        {
+            return $"❌ Erro: {ex.Message}";
+        }
+    }
+```
+
+---
+
+## 🎯 Conclusão
+
+- Use o estilo **funcional** quando quiser controle rigoroso de fluxo e **sem exceções**, ideal para pipelines e validações.
+- Use o estilo **imperativo** quando precisar de código mais direto e legível para times acostumados ao padrão tradicional.
+
+---
+
+> Ambos os estilos são válidos. Escolha com base na clareza, manutenção e coesão da sua aplicação.
+
+
+
 ## 🛠️ Dicas Práticas
 
 - Use `Right` para valores válidos e `Left` para falhas controladas;
