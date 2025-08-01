@@ -65,11 +65,13 @@ public class Right<L, R> : Either<L, R>
 
 ## 📊 Métodos e seus Propósitos
 
-| Método       | Propósito                                                                 |
-|--------------|---------------------------------------------------------------------------|
-| `Match`      | Avalia `Left` ou `Right` e retorna um valor em ambos os casos             |
-| `Map`        | Aplica uma função apenas se for `Right`, preservando `Left`               |
-| `Bind`       | Aplica uma função que também retorna um `Either` (evita `nested Either`)  |
+
+| Método       | Propósito                                                                 | Quando se deve usar                                                                 |
+|--------------|---------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| `Match`      | Avalia `Left` ou `Right` e retorna um valor em ambos os casos             | Quando quiser extrair ou tomar uma decisão com base no resultado final (`Right`/`Left`) |
+| `Map`        | Aplica uma função apenas se for `Right`, preservando `Left`               | Quando quiser transformar o valor de sucesso (`Right`) sem alterar a estrutura       |
+| `Bind`       | Aplica uma função que também retorna um `Either` (evita `nested Either`)  | Quando quiser encadear operações que também podem falhar (funções que retornam `Either`) |
+
 
 ---
 
